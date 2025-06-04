@@ -4,20 +4,41 @@
   font-family: Arial, sans-serif;
 
   .repo-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; // adds space between input and button
     margin-bottom: 2rem;
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    input {
-      padding: 0.8rem;
+    .repo-input-field {
+      padding: 0.8rem 1rem;
       font-size: 1rem;
-      width: 60%;
-      max-width: 500px;
+      width: 100%;
+      max-width: 1000px;
       border-radius: 24px;
       border: 1px solid #ccc;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .repo-input-analyze {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 24px;
+      background-color: #4285f4;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+      box-shadow: 0 2px 6px rgba(66, 133, 244, 0.3);
+
+      &:hover {
+        background-color: #357ae8;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
     }
   }
 
@@ -27,7 +48,7 @@
     gap: 1rem;
     margin-bottom: 1rem;
 
-    button {
+    .tabs-button {
       background: none;
       border: none;
       padding: 0.5rem 1rem;
@@ -43,17 +64,8 @@
   }
 
   .tab-content {
-    h2 {
+    .tab-content-title {
       margin-bottom: 0.5rem;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-
-      li {
-        margin-bottom: 0.25rem;
-      }
     }
   }
 }
