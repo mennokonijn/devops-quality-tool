@@ -1,0 +1,27 @@
+// App.scss
+.app-container {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #f0f2f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: #444;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.tab-link.active {
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+}

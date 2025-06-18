@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/metric-table.scss';
+import '../styles/MetricTable.scss';
 
 type MetricTableProps = {
     metrics: { name: string; value: string | number }[];
