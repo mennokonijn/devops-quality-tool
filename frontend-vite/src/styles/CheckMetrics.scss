@@ -5,6 +5,12 @@
   gap: 1rem;
   margin-bottom: 2rem;
 
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .input-field {
     padding: 0.8rem 1rem;
     font-size: 1rem;
@@ -44,10 +50,42 @@
 
   .tab-content {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 
     .tab-content-title {
       margin-bottom: 0.5rem;
+    }
+  }
+
+  .get-metrics-button {
+    padding: 0.6rem 1.5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 24px;
+    background-color: #4285f4;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: 0 2px 6px rgba(66, 133, 244, 0.3);
+
+    &:hover {
+      background-color: #357ae8;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:disabled {
+      background-color: #e0e0e0;
+      color: #888;
+      cursor: not-allowed;
+      border: 1px solid #ccc;
+      opacity: 0.6;
     }
   }
 }
