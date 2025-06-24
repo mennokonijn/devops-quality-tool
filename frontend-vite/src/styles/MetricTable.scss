@@ -33,4 +33,17 @@
   .table-header:nth-child(2), .table-cell:nth-child(2) {
     width: 40%;
   }
+
+  .expanded-cell {
+    background-color: #fcfcfc;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 1rem;
+    white-space: pre-wrap;
+    border-top: none;
+    border-bottom: 1px solid #e0e0e0;
+    overflow-wrap: anywhere;
+    color: #333;
+  }
 }

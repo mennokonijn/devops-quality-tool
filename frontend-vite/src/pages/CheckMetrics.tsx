@@ -22,8 +22,6 @@ const metricData: Record<string, { name: string; value: string }[]> = {
         { name: 'Unused Libraries', value: 'Depcheck/Vulture/Maven Analyzer' },
     ],
     Test: [
-        { name: 'Condition Coverage', value: 'SonarQube' },
-        { name: 'Line Coverage', value: 'SonarQube' },
         { name: 'Total Coverage', value: 'SonarQube' },
         { name: 'Test Success Density', value: 'SonarQube' },
     ],
@@ -53,7 +51,9 @@ const CheckMetrics: React.FC = () => {
             const response = await axios.get('http://localhost:4000/api/extract-results', {
                 params: { repo },
             });
-            setMeasuredMetrics(response.data);
+
+            const responseData: Record<string, { name: string; value: string }[]>[] = response.data
+            setMeasuredMetrics(responseData[responseData.length - 1]);
             setNotFetched(false);
             setActiveTab('Plan'); // Reset to the first tab after fetching
         } catch (error) {
