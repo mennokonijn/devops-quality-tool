@@ -40,7 +40,7 @@ const metricData: Record<string, { name: string; value: string }[]> = {
 
 const CheckMetrics: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Planning');
-    const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
+    const [repo, setRepo] = useState('mennokonijn/unit-test-examples');
     const [measuredMetrics, setMeasuredMetrics] = useState<Record<string, { name: string; value: string }[]>>(metricData);
     const [notFetched, setNotFetched] = useState(true);
 
@@ -55,7 +55,7 @@ const CheckMetrics: React.FC = () => {
             const responseData: Record<string, { name: string; value: string }[]>[] = response.data
             setMeasuredMetrics(responseData[responseData.length - 1]);
             setNotFetched(false);
-            setActiveTab('Plan'); // Reset to the first tab after fetching
+            setActiveTab('Plan');
         } catch (error) {
             console.error('Error fetching metrics:', error);
         }
