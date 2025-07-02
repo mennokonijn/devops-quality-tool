@@ -12,7 +12,7 @@ const allMetrics = [
 
 const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
-    const [branch, setBranch] = useState('main');
+    const [branch, setBranch] = useState('master');
     const [directory, setDirectory] = useState('');
     const [language, setLanguage] = useState('javascript');
     const [metrics, _setMetrics] = useState<string[]>(allMetrics);
@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
                         value={branch}
                         onChange={(e) => setBranch(e.target.value)}
                     />
-                    <h2 className={'input-question'}>Your working directory (Leave empty when this is the root directory)</h2>
+                    <h2 className={'input-question'}>Location of your packages (Leave empty when this is the root directory)</h2>
                     <input
                         type="text"
                         className={'input-field'}
