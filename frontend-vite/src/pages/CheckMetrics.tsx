@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/CheckMetrics.scss';
 import MetricTable from "../components/MetricTable.tsx";
 import axios from "axios";
@@ -40,16 +40,33 @@ const metricData: Record<string, { name: string; value: string }[]> = {
 
 const CheckMetrics: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Planning');
-    const [repo, setRepo] = useState('mennokonijn/unit-test-examples');
+    const [repos, setRepos] = useState(['']);
+    const [selectedRepo, setSelectedRepo] = useState('');
     const [measuredMetrics, setMeasuredMetrics] = useState<Record<string, { name: string; value: string }[]>>(metricData);
     const [notFetched, setNotFetched] = useState(true);
+
+    useEffect(() => {
+        const fetchRepos = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/repos');
+                setRepos(response.data.map((repo: { name: string }) => repo.name));
+                setSelectedRepo(response.data[0]?.name || '');
+            } catch (error) {
+                console.error('Error fetching repositories:', error);
+            }
+        };
+
+        fetchRepos();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        console.log(selectedRepo)
+
         try {
             const response = await axios.get('http://localhost:4000/api/extract-results', {
-                params: { repo },
+                params: { repo: selectedRepo },
             });
 
             const responseData: Record<string, { name: string; value: string }[]>[] = response.data
@@ -65,14 +82,14 @@ const CheckMetrics: React.FC = () => {
         <div className={'check-metrics'}>
             <h1 className="title-text">Overview of Metrics</h1>
             <form className="form" onSubmit={handleSubmit}>
-                <h2 className={'input-question'}>Your GitHub repository url</h2>
-                <input
-                    type="text"
-                    className={'input-field'}
-                    placeholder="Enter GitHub Repository URL"
-                    value={repo}
-                    onChange={(e) => setRepo(e.target.value)}
-                />
+                <h2 className={'input-question'}>Your GitHub repository name</h2>
+                <select className={'select-field'} value={selectedRepo} onChange={e => setSelectedRepo(e.target.value)}>
+                    {repos.map(repo => (
+                        <option key={repo} value={repo}>
+                            {repo}
+                        </option>
+                    ))}
+                </select>
                 <button className={'get-metrics-button'} type={"submit"}>
                     Get Metrics
                 </button>

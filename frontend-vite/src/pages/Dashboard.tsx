@@ -4,18 +4,14 @@ import axios from "axios";
 import WorkflowInstructions from "../components/WorkflowInstructions.tsx";
 import { Info } from 'lucide-react';
 
-const allMetrics = [
-    "Code Smells", "Cyclomatic Complexity", "Cognitive Complexity",
-    "Duplicated Lines Density", "Total Coverage", "CVEs and CVSS",
-    "Secret Detection", "Test Success Density"
-];
+const TOOLS = ['GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints'];
 
 const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
     const [branch, setBranch] = useState('master');
     const [directory, setDirectory] = useState('');
     const [language, setLanguage] = useState('javascript');
-    const [metrics, _setMetrics] = useState<string[]>(allMetrics);
+    const [tools,_setTools] = useState<string[]>(TOOLS);
     const [yaml, setYaml] = useState('');
     const [showInstructions, setShowInstructions] = useState(false);
 
@@ -23,7 +19,7 @@ const Dashboard: React.FC = () => {
         e.preventDefault();
         const res = await axios.post('http://localhost:4000/api/generate-yaml', {
             language,
-            metrics,
+            tools,
             repo,
             branch,
             directory
