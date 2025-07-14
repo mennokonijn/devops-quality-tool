@@ -7,7 +7,7 @@ const BackendStatus: React.FC = () => {
         fetch('http://localhost:4000/api/health')
             .then((res) => res.text())
             .then((msg) => setStatus(msg))
-            .catch(() => setStatus('❌ Backend not reachable'));
+            .catch(() => setStatus('Backend not reachable'));
     }, []);
 
     return (

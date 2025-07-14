@@ -5,9 +5,10 @@ type Metric = { name: string; value: string | number };
 
 type MetricTableProps = {
     metrics: Metric[];
+    onSelectMetric?: (metricName: string) => void;
 };
 
-const MetricTable: React.FC<MetricTableProps> = ({ metrics }) => {
+const MetricTable: React.FC<MetricTableProps> = ({ metrics, onSelectMetric }) => {
     const [expandedMetric, setExpandedMetric] = useState<string | null>(null);
 
     if (metrics.length === 0) return <p>No metrics available.</p>;
@@ -34,8 +35,13 @@ const MetricTable: React.FC<MetricTableProps> = ({ metrics }) => {
                     <React.Fragment key={metric.name}>
                         <tr
                             className={'table-row'}
-                            onClick={() => isLong && setExpandedMetric(isExpanded ? null : metric.name)}
-                            style={{ cursor: isLong ? 'pointer' : 'default' }}
+                            onClick={() => {
+                                if (isLong) {
+                                    setExpandedMetric(isExpanded ? null : metric.name);
+                                }
+                                onSelectMetric?.(metric.name);
+                            }}
+                            style={{ cursor: 'pointer' }}
                         >
                             <td className={'table-cell'}>{metric.name}</td>
                             <td className={'table-cell'}>
