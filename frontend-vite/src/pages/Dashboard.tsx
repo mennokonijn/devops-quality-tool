@@ -10,7 +10,6 @@ const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
     const [branch, setBranch] = useState('master');
     const [directory, setDirectory] = useState('');
-    const [language, setLanguage] = useState('javascript');
     const [tools,_setTools] = useState<string[]>(TOOLS);
     const [yaml, setYaml] = useState('');
     const [showInstructions, setShowInstructions] = useState(false);
@@ -18,7 +17,6 @@ const Dashboard: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const res = await axios.post('http://localhost:4000/api/generate-yaml', {
-            language,
             tools,
             repo,
             branch,
@@ -77,10 +75,6 @@ const Dashboard: React.FC = () => {
                         onChange={(e) => setDirectory(e.target.value)}
                     />
                     <h2 className={'input-question'}>Language</h2>
-                    <select className={'select-field'} value={language} onChange={e => setLanguage(e.target.value)}>
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                    </select>
                     <button className={'repo-input-analyze'} type="submit">
                         Generate
                     </button>
