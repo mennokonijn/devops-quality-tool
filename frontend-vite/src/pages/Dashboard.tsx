@@ -4,7 +4,7 @@ import axios from "axios";
 import WorkflowInstructions from "../components/WorkflowInstructions.tsx";
 import { Info } from 'lucide-react';
 
-const TOOLS = ['GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints'];
+const TOOLS = ['GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints', 'Jira-Security-Epics', 'Jira-Security-Incidents'];
 
 const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
@@ -74,7 +74,6 @@ const Dashboard: React.FC = () => {
                         value={directory}
                         onChange={(e) => setDirectory(e.target.value)}
                     />
-                    <h2 className={'input-question'}>Language</h2>
                     <button className={'repo-input-analyze'} type="submit">
                         Generate
                     </button>

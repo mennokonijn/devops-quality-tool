@@ -4,7 +4,7 @@ import MetricTable from "../components/MetricTable.tsx";
 import axios from "axios";
 import MetricChart from "../components/MetricChart.tsx";
 
-const stages = ['Plan', 'Code', 'Build', 'Test', 'Deploy/Release', 'Operate/Monitor'];
+const stages = ['Plan', 'Code', 'Build', 'Test', 'DeployRelease', 'OperateMonitor'];
 
 const CheckMetrics: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Planning');
