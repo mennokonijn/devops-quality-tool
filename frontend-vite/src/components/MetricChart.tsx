@@ -22,7 +22,7 @@ interface Metric {
 interface MetricChartProps {
     history: Record<string, Metric[]>[];
     stage: string;
-    metricName: string;
+    metricName: string | null;
 }
 
 const MetricChart: React.FC<MetricChartProps> = ({ history, stage, metricName }) => {
@@ -32,7 +32,7 @@ const MetricChart: React.FC<MetricChartProps> = ({ history, stage, metricName })
         labels,
         datasets: [
             {
-                label: metricName,
+                label: metricName ?? '',
                 data: history.map(run => {
                     const metric = run[stage]?.find(m => m.name === metricName);
 

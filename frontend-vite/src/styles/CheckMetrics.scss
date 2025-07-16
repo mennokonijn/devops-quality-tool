@@ -66,6 +66,18 @@
     .tab-content-title {
       margin-bottom: 0.5rem;
     }
+
+    .tab-content-data {
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      gap: 25px;
+    }
+
+    .graph-container {
+      width: 800px;
+      height: 800px;
+    }
   }
 
   .get-metrics-button {
