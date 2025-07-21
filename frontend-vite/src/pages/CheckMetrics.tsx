@@ -4,7 +4,7 @@ import MetricTable from "../components/MetricTable.tsx";
 import axios from "axios";
 import MetricChart from "../components/MetricChart.tsx";
 
-const stages = ['Plan', 'Code', 'Build', 'Test', 'Deploy/Release', 'Operate/Monitor'];
+const stages = ['Plan', 'Code', 'Build', 'Test', 'DeployRelease', 'OperateMonitor'];
 
 const CheckMetrics: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Planning');
@@ -84,15 +84,16 @@ const CheckMetrics: React.FC = () => {
                     </div>
                     <div className="tab-content">
                         <h2 className={'tab-content-title'}>{activeTab} Metrics</h2>
-                        <MetricTable metrics={measuredMetrics[activeTab] || []} onSelectMetric={setSelectedMetricName}/>
-                        {selectedMetricName && (
-                            <MetricChart
-                                history={measuredMetricsHistory}
-                                stage={activeTab}
-                                metricName={selectedMetricName}
-                            />
-                        )}
-
+                        <div className={'tab-content-data'}>
+                            <MetricTable metrics={measuredMetrics[activeTab] || []} onSelectMetric={setSelectedMetricName}/>
+                            <div className={'graph-container'}>
+                                <MetricChart
+                                    history={measuredMetricsHistory}
+                                    stage={activeTab}
+                                    metricName={selectedMetricName}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </>
             )}
