@@ -40,10 +40,55 @@
     font-size: 0.85rem;
     line-height: 1.4;
     padding: 1rem;
-    white-space: pre-wrap;
     border-top: none;
     border-bottom: 1px solid #e0e0e0;
-    overflow-wrap: anywhere;
     color: #333;
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      margin: 0;
+    }
   }
+
+  .zap-alert-list {
+    font-family: monospace;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .zap-alert {
+    padding: 0.5rem;
+    border-left: 4px solid #ccc;
+    background-color: #fdfdfd;
+    border-radius: 4px;
+    word-break: break-word;
+  }
+
+  .zap-alert strong {
+    font-weight: 600;
+  }
+
+  .zap-alert a {
+    color: #1a0dab;
+    text-decoration: underline;
+    word-break: break-word;
+  }
+
+  .severity-low {
+    border-color: #4caf50;
+  }
+
+  .severity-medium {
+    border-color: #ff9800;
+  }
+
+  .severity-high {
+    border-color: #f44336;
+  }
+
 }

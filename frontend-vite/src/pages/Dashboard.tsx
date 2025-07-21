@@ -4,11 +4,13 @@ import axios from "axios";
 import WorkflowInstructions from "../components/WorkflowInstructions.tsx";
 import { Info } from 'lucide-react';
 
-const TOOLS = ['GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints', 'Jira-Security-Epics', 'Jira-Security-Incidents'];
+const TOOLS = ['ZAP', 'Depcheck', 'GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints', 'Jira-Security-Epics', 'Jira-Security-Incidents', 'Jira-Defect-Density', 'Language-Impact'];
 
 const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
     const [branch, setBranch] = useState('master');
+    const [port, setPort] = useState('8080');
+    const [startCommand, setStartCommand] = useState('npm run start');
     const [directory, setDirectory] = useState('');
     const [tools,_setTools] = useState<string[]>(TOOLS);
     const [yaml, setYaml] = useState('');
@@ -20,7 +22,9 @@ const Dashboard: React.FC = () => {
             tools,
             repo,
             branch,
-            directory
+            directory,
+            port,
+            startCommand
         });
         setYaml(res.data.yaml);
     };
@@ -66,13 +70,30 @@ const Dashboard: React.FC = () => {
                         value={branch}
                         onChange={(e) => setBranch(e.target.value)}
                     />
-                    <h2 className={'input-question'}>Location of your packages (Leave empty when this is the root directory)</h2>
+                    <h2 className={'input-question'}>Location of your packages (Leave empty when this is the root
+                        directory)</h2>
                     <input
                         type="text"
                         className={'input-field'}
                         placeholder="Enter directory name"
                         value={directory}
                         onChange={(e) => setDirectory(e.target.value)}
+                    />
+                    <h2 className={'input-question'}>What port do you use to run your app locally?</h2>
+                    <input
+                        type="text"
+                        className={'input-field'}
+                        placeholder="Enter local port (default: 8080)"
+                        value={port}
+                        onChange={(e) => setPort(e.target.value)}
+                    />
+                    <h2 className={'input-question'}>What NPM command do you run when you run your app locally?</h2>
+                    <input
+                        type="text"
+                        className={'input-field'}
+                        placeholder="Enter local run command (default: npm run start)"
+                        value={startCommand}
+                        onChange={(e) => setStartCommand(e.target.value)}
                     />
                     <button className={'repo-input-analyze'} type="submit">
                         Generate

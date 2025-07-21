@@ -36,12 +36,19 @@ const MetricChart: React.FC<MetricChartProps> = ({ history, stage, metricName })
                 data: history.map(run => {
                     const metric = run[stage]?.find(m => m.name === metricName);
 
-                    console.log(metric)
+                    if (!metric) return null;
 
-                    const parsedValue = metric ? parseNumericValue(metric.value) : null;
-                    return parsedValue !== null ? parsedValue : null;
+                    if (Array.isArray(metric.value)) {
+                        return metric.value.length;
+                    }
 
+                    if (typeof metric.value === 'string' || typeof metric.value === 'number') {
+                        return parseNumericValue(metric.value);
+                    }
+
+                    return null;
                 }),
+
                 borderWidth: 2,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -49,6 +56,7 @@ const MetricChart: React.FC<MetricChartProps> = ({ history, stage, metricName })
                 pointRadius: 4,
                 pointHoverRadius: 6,
                 fill: false,
+                spanGaps: true
             },
         ],
     };

@@ -1,5 +1,6 @@
 export const parseNumericValue = (value: string | number): number | null => {
     if (typeof value === 'number') return value;
+    if (typeof value !== 'string') return null; // <-- ADD THIS GUARD
 
     const trimmed = value.trim();
 
@@ -14,6 +15,9 @@ export const parseNumericValue = (value: string | number): number | null => {
 
     const outdatedLibraries = trimmed.match(/Outdated Libraries:\s*([0-9.]+)/i);
     if (outdatedLibraries) return parseFloat(outdatedLibraries[1]);
+
+    const unusedLibraries = trimmed.match(/Total unused libraries:\s*([0-9.]+)/i);
+    if (unusedLibraries) return parseFloat(unusedLibraries[1]);
 
     const plainNumber = parseFloat(trimmed);
     return !isNaN(plainNumber) ? plainNumber : null;
