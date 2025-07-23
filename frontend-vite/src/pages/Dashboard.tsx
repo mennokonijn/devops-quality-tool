@@ -4,12 +4,13 @@ import axios from "axios";
 import WorkflowInstructions from "../components/WorkflowInstructions.tsx";
 import { Info } from 'lucide-react';
 
-const TOOLS = ['ZAP', 'Depcheck', 'GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints', 'Jira-Security-Epics', 'Jira-Security-Incidents', 'Jira-Defect-Density', 'Language-Impact'];
+const TOOLS = ['ZAP', 'Depcheck', 'GitLeaks', 'Jest', 'SonarQube', 'Trivy', 'Jira-SprintPoints', 'Jira-Security-Epics', 'Jira-Security-Incidents', 'Jira-Defect-Density', 'Language-Impact', 'Deployment-Frequency', 'Deployment-Time', 'MTTR'];
 
 const Dashboard: React.FC = () => {
     const [repo, setRepo] = useState('https://github.com/mennokonijn/unit-test-examples');
     const [branch, setBranch] = useState('master');
     const [port, setPort] = useState('8080');
+    const [deploymentName, setDeploymentName] = useState('Simulate Deployment History');
     const [startCommand, setStartCommand] = useState('npm run start');
     const [directory, setDirectory] = useState('');
     const [tools,_setTools] = useState<string[]>(TOOLS);
@@ -23,6 +24,7 @@ const Dashboard: React.FC = () => {
             repo,
             branch,
             directory,
+            deploymentName,
             port,
             startCommand
         });
@@ -94,6 +96,14 @@ const Dashboard: React.FC = () => {
                         placeholder="Enter local run command (default: npm run start)"
                         value={startCommand}
                         onChange={(e) => setStartCommand(e.target.value)}
+                    />
+                    <h2 className={'input-question'}>What is the name of your GitHub actions deployment workflow?</h2>
+                    <input
+                        type="text"
+                        className={'input-field'}
+                        placeholder="Enter deployment workflow name (default: Simulate Deployment History)"
+                        value={deploymentName}
+                        onChange={(e) => setDeploymentName(e.target.value)}
                     />
                     <button className={'repo-input-analyze'} type="submit">
                         Generate
