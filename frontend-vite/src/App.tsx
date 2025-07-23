@@ -3,6 +3,8 @@ import Dashboard from './pages/Dashboard';
 import BackendStatus from './pages/BackendStatus';
 import './styles/App.scss';
 import CheckMetrics from "./pages/CheckMetrics.tsx";
+import UserSatisfactionSurvey from "./pages/userSatisfactionSurvey.tsx";
+import StakeholderSatisfactionSurvey from "./pages/stakeholderSatisfactionSurvey.tsx";
 
 function App() {
     return (
@@ -17,6 +19,8 @@ function App() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/status" element={<BackendStatus />} />
                     <Route path="/measurements" element={<CheckMetrics />} />
+                    <Route path="/user-survey/:repositoryId" element={<UserSatisfactionSurvey />} />
+                    <Route path="/stakeholder-survey/:repositoryId" element={<StakeholderSatisfactionSurvey />} />
                 </Routes>
             </div>
         </Router>
