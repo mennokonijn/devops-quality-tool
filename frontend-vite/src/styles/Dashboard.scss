@@ -6,7 +6,7 @@
   .input-question {
     width: 100%;
     margin-bottom: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .repo-input {
@@ -17,6 +17,7 @@
     margin-bottom: 2rem;
 
     .input-field {
+      box-sizing: border-box;
       padding: 0.8rem 1rem;
       font-size: 1rem;
       width: 100%;
@@ -24,6 +25,34 @@
       border-radius: 24px;
       border: 1px solid #ccc;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-block {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background-color: #fdfdfd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      width: 1000px;
+    }
+
+    .section-block h2.input-question {
+      text-align: left;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+
+    .input-field:invalid {
+      border-color: #dc3545;
+    }
+
+    .input-field:invalid:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
     }
 
     .select-field {
@@ -109,4 +138,128 @@
       text-decoration: underline;
     }
   }
+
+  .tool-selection-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+
+  .info-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    svg {
+      color: #666;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #000;
+      }
+    }
+
+    .tooltip-text {
+      visibility: hidden;
+      width: max-content;
+      max-width: 300px;
+      background-color: #333;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 8px 10px;
+      position: absolute;
+      z-index: 1;
+      top: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 0.9rem;
+      white-space: normal;
+    }
+
+    &:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-size: 1rem;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .tool-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 0.75rem 2rem;
+    margin: 1rem 0;
+    max-width: 1000px;
+    justify-content: start;
+  }
+
+  .tool-option {
+    border: 2px solid black;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 400px;
+    text-align: center;
+    user-select: none;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .tool-option.selected {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+
+  .tool-option .checkmark {
+    margin-left: 0.5rem;
+    font-weight: bold;
+  }
+
+  .instructions-button {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out;
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    svg {
+      margin-right: 6px;
+    }
+  }
+
+  .instructions-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
 }
