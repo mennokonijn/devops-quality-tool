@@ -74,6 +74,7 @@ const CheckMetrics: React.FC = () => {
 
             setMeasuredMetrics(responseData[responseData.length - 1]);
             setMeasuredMetricsHistory(responseData);
+            console.log(responseData);
             setNotFetched(false);
             setActiveTab('OperateMonitor');
         } catch (error) {
@@ -140,7 +141,11 @@ const CheckMetrics: React.FC = () => {
                         <h2 className={'tab-content-title'}>{activeTab} Metrics</h2>
                         <div className={'tab-content-data'}>
                             <MetricTable metrics={measuredMetrics[activeTab] || []} onSelectMetric={setSelectedMetricName}/>
-                            {(measuredMetricsHistory.length > 0 && selectedMetricName === '') ?? (
+                            {measuredMetricsHistory.length > 0 &&
+                                selectedMetricName &&
+                                selectedMetricName !== '' &&
+                                selectedMetricName !== 'User Satisfaction (NSI)' &&
+                                selectedMetricName !== 'Stakeholder Satisfaction (NSI)' && (
                                 <div className={'graph-container'}>
                                         <MetricChart
                                             history={measuredMetricsHistory}
@@ -149,7 +154,7 @@ const CheckMetrics: React.FC = () => {
                                         />
                                 </div>
                             )}
-                            {(selectedMetricName === 'User Satisfaction (NSI)' || selectedMetricName == 'Stakeholder Satisfaction (NSI)') && (
+                            {(selectedMetricName === 'User Satisfaction (NSI)' || selectedMetricName === 'Stakeholder Satisfaction (NSI)') && (
                                 <div className={'graph-container'}>
                                     <SurveyAnswers repositoryId={selectedRepo.id} selectedMetricName={selectedMetricName}/>
                                 </div>
