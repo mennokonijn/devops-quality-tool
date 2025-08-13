@@ -1,5 +1,6 @@
 export const TOOL_OPTIONS = [
     { toolName: 'ZAP', displayName: 'Penetration Testing', info: 'OWASP ZAP scans the live application for security vulnerabilities.' },
+    { toolName: 'Outdated-Packages', displayName: 'Outdated Packages', info: 'Detects and lists outdated libraries in your project.' },
     { toolName: 'Depcheck', displayName: 'Unused Libraries', info: 'Analyzes project dependencies to detect libraries declared but not used in the codebase.' },
     { toolName: 'GitLeaks', displayName: 'Secret Detection', info: 'Scans codebase to identify hardcoded secrets such as API keys, credentials, or tokens.' },
     { toolName: 'Jest', displayName: 'Test Success Density', info: 'Runs unit tests and measures the percentage of tests that pass across all executions. (TypeScript/JavaScript onlu)' },

@@ -8,6 +8,25 @@ import SurveyAnswers from "../components/surveyAnswers.tsx";
 
 const stages = ['Plan', 'Code', 'Build', 'Test', 'DeployRelease', 'OperateMonitor'];
 
+const getStageName = (stage: string) => {
+    switch (stage) {
+        case 'Plan':
+            return 'Planning';
+        case 'Code':
+            return 'Coding';
+        case 'Build':
+            return 'Building';
+        case 'Test':
+            return 'Testing';
+        case 'DeployRelease':
+            return 'Deploy and Release';
+        case 'OperateMonitor':
+            return 'Operate and Monitor';
+        default:
+            return stage;
+    }
+}
+
 const CheckMetrics: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Planning');
     const [repos, setRepos] = useState([{name: '', id: '' }]);
@@ -90,8 +109,9 @@ const CheckMetrics: React.FC = () => {
                     className={'select-field'}
                     value={selectedRepo.id}
                     onChange={e => {
-                        const selected = repos.find(r => r.id === e.target.value);
-                        if (selected) setSelectedRepo(selected);
+                        const selected = repos.find(r => r.id == e.target.value);
+                        console.log(selected)
+                        if (selected) setSelectedRepo({ name: selected.name, id: selected.id });
                     }}
                 >
                     {repos.map(repo => (
@@ -133,7 +153,7 @@ const CheckMetrics: React.FC = () => {
                                 onClick={() => {
                                     setActiveTab(stage) ; setSelectedMetricName('');}}
                             >
-                                {stage}
+                                {getStageName(stage)}
                             </button>
                         ))}
                     </div>

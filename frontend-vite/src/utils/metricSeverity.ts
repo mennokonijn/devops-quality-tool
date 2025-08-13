@@ -23,12 +23,12 @@ export const classifyMetricSeverity = (
                 return 'high';
 
 
-            // Say that even mentioning it is good enough for a project
+            // Even addressing security in the requirements is good enough for a project
             case 'Security Requirements Coverage':
                 if (numericValue > 0) return 'low';
                 return 'high';
 
-            // Say that even mentioning it is good enough for a project
+            // One security incident is already a lot, so we classify it as high
             case 'Security Incidents':
                 if (numericValue > 0) return 'high';
                 return 'low';
@@ -70,10 +70,12 @@ export const classifyMetricSeverity = (
                 if (numericValue <= 200) return 'medium';
                 return 'high';
 
+            // One or more unused libraries is already a lot, so we classify it as high
             case 'Unused Libraries':
                 if (numericValue === 0) return 'low';
                 return 'high';
 
+            // One or more secrets is already a lot, so we classify it as high
             case 'Secrets detected by GitLeaks':
                 if (numericValue === 0) return 'low';
                 return 'high';
@@ -88,6 +90,7 @@ export const classifyMetricSeverity = (
                 if (numericValue >= 80) return 'low';
                 return 'high';
 
+            // Classifying the severity of OWASP ZAP alerts
             case 'OWASP ZAP Penetration Tests Findings':
                 if (Array.isArray(value)) {
                     const severities = value.map((alert: ZapAlert) => alert.description?.toLowerCase() || '');
@@ -98,10 +101,10 @@ export const classifyMetricSeverity = (
                 }
                 return 'low';
 
-            // No benchmarks available, so we assume that the lower the better
+            // According to dora metrics
             case 'Average Deployment Time':
-                if (numericValue < 1) return 'low';
-                if (numericValue < 3) return 'medium';
+                if (numericValue < 24) return 'low';
+                if (numericValue < 168) return 'medium';
                 return 'high';
 
             // https://instatus.com/blog/deployment-frequency
@@ -122,6 +125,7 @@ export const classifyMetricSeverity = (
                 if (numericValue < 24) return 'medium';
                 return 'high';
 
+            // One or more outdated packages is already a lot, so we classify it as high
             case  'Outdated Packages':
                 if (numericValue === 0) return 'low';
                 return 'high';
@@ -135,5 +139,7 @@ export const classifyMetricSeverity = (
             default:
                 return undefined;
         }
+    } else {
+        return 'low'
     }
 };
