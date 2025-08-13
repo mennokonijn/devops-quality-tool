@@ -20,6 +20,7 @@ const Dashboard: React.FC = () => {
     const [selectedSonarMetrics, setSelectedSonarMetrics] = useState<string[]>(['functions', 'ncloc']);
     const [nodeVersion, setNodeVersion] = useState('18');
     const [startCommand, setStartCommand] = useState('npm run start');
+    const [installCommand, setInstallCommand] = useState('npm install');
     const [directory, setDirectory] = useState('');
     const [tools, setTools] = useState<string[]>([]);
     const [yaml, setYaml] = useState('');
@@ -71,6 +72,7 @@ const Dashboard: React.FC = () => {
             nodeVersion,
             port,
             startCommand,
+            installCommand,
             securityIncidentLabel,
             completionLabel,
             jiraEmail,
@@ -155,7 +157,7 @@ const Dashboard: React.FC = () => {
                             type="button"
                             onClick={() => setShowWorkflowInstructions(true)}
                         >
-                            <Info size={16} style={{ marginRight: '6px' }} />
+                            <Info size={16} style={{marginRight: '6px'}}/>
                             Workflow Instructions
                         </button>
                     </div>
@@ -163,16 +165,18 @@ const Dashboard: React.FC = () => {
                     <input required className="input-field" value={repo} onChange={e => setRepo(e.target.value)} placeholder="Enter GitHub URL"/>
 
                     <h3 className={'input-question'}>Branch name that needs to be tested</h3>
-                    <input required className="input-field" value={branch} onChange={e => setBranch(e.target.value)} placeholder="default: main"/>
+                    <input required className="input-field" value={branch} onChange={e => setBranch(e.target.value)} placeholder="e.g: main"/>
 
                     <h3 className={'input-question'}>Location of packages (leave empty if root)</h3>
                     <input className="input-field" value={directory} onChange={e => setDirectory(e.target.value)} placeholder="Directory path"/>
 
                     <h3 className={'input-question'}>Local port</h3>
-                    <input required className="input-field" value={port} onChange={e => setPort(e.target.value)} placeholder="default: 8080"/>
+                    <input required className="input-field" value={port} onChange={e => setPort(e.target.value)} placeholder="e.g: 8080"/>
 
                     <h3 className={'input-question'}>Start command</h3>
-                    <input required className="input-field" value={startCommand} onChange={e => setStartCommand(e.target.value)} placeholder="npm run start"/>
+                    <input required className="input-field" value={startCommand} onChange={e => setStartCommand(e.target.value)} placeholder="e.g: npm run start"/>
+                    <h3 className={'input-question'}>Install command</h3>
+                    <input required className="input-field" value={installCommand} onChange={e => setInstallCommand(e.target.value)} placeholder="e.g: npm install"/>
 
                     <h3 className={'input-question'}>Node.js version</h3>
                     <input required className="input-field" value={nodeVersion} onChange={e => setNodeVersion(e.target.value)} placeholder="e.g. 18"/>

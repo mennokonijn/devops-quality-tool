@@ -16,7 +16,10 @@ const QUESTIONS = [
 
 
 const UserSatisfactionSurvey: React.FC = () => {
-    const [answers, setAnswers] = useState<number[]>(Array(QUESTIONS.length).fill(3));
+    const [answers, setAnswers] = useState<number[]>(
+        () => QUESTIONS.map(() => Math.floor(Math.random() * 6)) // random value 0-5
+    );
+
     const [submitted, setSubmitted] = useState(false);
 
     const { repositoryId } = useParams<{ repositoryId: string }>();

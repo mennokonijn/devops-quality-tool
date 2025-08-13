@@ -3,14 +3,7 @@
 
 This is the frontend of the DevOps Quality Tool, built with **React**, **Vite**, **TypeScript**, and **Sass**. It allows users to input a GitHub repository URL and displays software quality metrics by DevOps lifecycle stage.
 
-## 🚀 Features
-
-- Clean Google-like UI for repo input
-- Tabs for DevOps stages with quality metrics
-- Health status check for backend
-- Fast build & hot-reload with Vite
-
-## 🧰 Tech Stack
+## Tech Stack
 
 - React 18+
 - Vite
@@ -18,7 +11,7 @@ This is the frontend of the DevOps Quality Tool, built with **React**, **Vite**,
 - Sass
 - React Router DOM
 
-## 🔧 Setup
+## Setup
 
 1. **Install dependencies**
    ```bash
